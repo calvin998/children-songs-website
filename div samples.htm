@@ -1,0 +1,66 @@
+<html>
+<head>
+<style>
+h1 {color:#ee11ff} /* RGB */
+
+div {border: solid 1px #00F; overflow: auto;}
+div.line {padding-top:3px;}
+div.section{ float:left; } 
+div.chord{ color: #FF0000; font-size:1.5em; font-weight:bold; padding:2px;}
+div.lyrics {border: solid 0px #F00;	float:left;	padding:0px;} 
+
+</style>
+</head>
+<body>
+<h1>Div Tests               .</h1>
+	<a href='#' style='position:fixed;bottom:100px;right:100px;z-index:1000;'>Top Top Top Top Top Top Top Top </a>
+<a href='#' onclick='myFunc();return false;'>click me u won't</a>
+<div class=line>
+	<div class='section'>
+		<div class='chord'>D</div><div class='lyrics'>Obey your mom and d</div>
+	</div>
+	<div class='section'>
+		<div class='chord'>A</div><div class='lyrics'>ad</div>
+	</div>
+</div>
+<div class=line>
+	<div class='section'>
+		<div class='chord'>&nbsp;</div><div class='lyrics'>When t</div>
+	</div>
+	<div class='section'>
+		<div class='chord'>D</div><div class='lyrics'>hey tell you w</div>
+	</div>
+	<div class='section'>
+		<div class='chord'>G</div><div class='lyrics'>hat to d</div>
+	</div>
+	<div class='section'>
+		<div class='chord'>A</div><div class='lyrics'>o</div>
+	</div>
+</div>
+
+
+<div style='width:1024px;margin-top:50px;height:1000000px'>
+1024
+	<div style='width:800px'>
+	800 <span style='font-size:3em;cursor:pointer;font-weight:bold'>X</span>
+		<div style='width:640px'>
+		640 
+
+		</div>
+	</div>
+</div>
+
+<div class='menu'>
+	<div style='float:left; cursor:pointer; text-decoration:underline;' onclick='myFunc();'>All Songs</div>
+	<div style='float:right;'>Playlist</div>
+</div>
+
+
+
+<script>
+function myFunc(){
+	alert('tttt');
+}
+</script>
+</body>
+</html>
