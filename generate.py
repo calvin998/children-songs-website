@@ -1,5 +1,6 @@
 import os
-songs = os.listdir("songs")
+# Get all files with .pro file extension
+songs = [f for f in os.listdir('songs') if f.endswith('.pro')]
 songs.sort()
 
 ignoreBlankLine = False
@@ -171,6 +172,7 @@ f.write("</tbody></table><br><br><br>")
 index = 0
 for s_name in songs:
      f.write(generateSongContent(s_name, index))
+     print("\n%s %s" % (index, s_name))
      index += 1
 
 f.write("</div><div id=playlist style='display: none'><table id='playlist_table' class='display' width='100%'></table><div id=playarea></div>")
