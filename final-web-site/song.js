@@ -36,7 +36,7 @@ function initPlayListTable(){
         data: playlist_data,
 		paging: false,
 		searching: false,
-		sorting:false,
+		sorting: false,
 		destroy: true, /*destroy old table*/
         columns: [
 			{ title: "Id", visible:false },
@@ -79,7 +79,10 @@ function pushToPlaylist(i){
 	playlist_data.push([
 			i, 
 			"<a href='#' onclick='showSong("+i+")'>"+song_dict[i]+"</a>" + 
-			"<button class='btn small_btn red_btn' onclick='removeFromPlaylist("+i+")'><i class='fa fa-trash'></i> Remove</button>"]);	
+			"<button class='btn small_btn red_btn' onclick='removeFromPlaylist("+i+")'><i class='fa fa-trash'></i> Remove</button>" +
+			"<button class='btn small_btn' onclick='moveDownInPlaylist("+i+")'><i class='fa fa-arrow-down'></i></button>" +
+			"<button class='btn small_btn' onclick='moveUpInPlaylist("+i+")'><i class='fa fa-arrow-up'></i></button>"
+		]);	
 }
 
 function removeFromPlaylist(i){
@@ -87,13 +90,53 @@ function removeFromPlaylist(i){
 	var temp = [];
 	for (j = 0; j < playlist_data.length; j++) {
 	  if( playlist_data[j][0] != i )
-		  temp.push(playlist_data[j]);
+		temp.push(playlist_data[j]);
 	}
 	playlist_data = temp;
 
 	// update UI
 	$('.add_'+i).show();
 	$('.remove_'+i).hide();
+
+	initPlayListTable();
+	savePlaylist();
+}
+
+function moveUpInPlaylist(i){
+	if( playlist_data[0][0] == i ) // already the top
+		return;
+	
+	var temp = [];
+	for (j = 0; j < playlist_data.length; j++) {
+	  if( j == playlist_data.length-1 || playlist_data[j+1][0] != i ) // if the next one isn't the target
+		temp.push(playlist_data[j]);
+	  else{ // found it
+		temp.push(playlist_data[j+1]);
+		temp.push(playlist_data[j]);
+		j++;
+	  }
+	}
+	playlist_data = temp;
+
+	initPlayListTable();
+	savePlaylist();
+}
+
+function moveDownInPlaylist(i){
+	if( playlist_data[playlist_data.length-1][0] == i ) // already the bottom
+		return;
+	
+	var temp = [];
+	for (j = 0; j < playlist_data.length; j++) {
+	  if( playlist_data[j][0] != i )
+		temp.push(playlist_data[j]);
+	  else{ // found it
+		temp.push(playlist_data[j+1]);
+		temp.push(playlist_data[j]);
+		j++;
+	  }
+	}
+	playlist_data = temp;
 
 	initPlayListTable();
 	savePlaylist();
@@ -129,7 +172,3 @@ function showSong(i){
         scrollTop: $("#playarea").offset().top-10
     }, 750);
 }
-
-
-
-
